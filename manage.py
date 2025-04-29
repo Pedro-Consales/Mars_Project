@@ -15,7 +15,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    execute_from_command_line(sys.argv)
+
+    # Usando a variável de ambiente PORT (ou 8000 como fallback)
+    port = os.environ.get('PORT', '8000')
+    execute_from_command_line([sys.argv[0], 'runserver', f'0.0.0.0:{port}'])
 
 
 if __name__ == '__main__':
