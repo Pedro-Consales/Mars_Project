@@ -34,3 +34,7 @@ pip install -r requirements.txt
 ```bash
 python manage.py runserver
 ```
+
+## 🚀 Live Demo
+The system is currently deployed at:
+[https://mars-project-t5d8.onrender.com](https://mars-project-t5d8.onrender.com)
