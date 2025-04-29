@@ -4,7 +4,7 @@
 **Mission:** Enable sustainable human habitation on Mars by combating dust storms and health risks.  
 
 **Features:**  
-- 🌪️ Real-time weather + 5-day forecasts (NASA InSight API)  
+- 🌪️ 6-days forecasts (NASA InSight API)  
 - ❤️ Astronaut vital monitoring  
 - 🔋 Storm alerts to protect equipment  
 
