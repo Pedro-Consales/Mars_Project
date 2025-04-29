@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenv
+venv/
+projeto-mars-venv/
+
+# Django
+*.sqlite3
+db.sqlite3
+/media
+/staticfiles
+
+# Env files
+.env
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Test / coverage
+.coverage
+htmlcov/
+.tox/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/

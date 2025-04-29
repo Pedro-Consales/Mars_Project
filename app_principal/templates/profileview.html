@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+    <head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MyStatus</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'styles/profile_view/generalP.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/profile_view/top-section.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/profile_view/alo-section.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/profile_view/stats-section.css' %}">
+
+
+
+        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+        <style>
+
+            body{
+
+                height: 100vh;
+                background: linear-gradient(to bottom, #110F25, #290C08);
+
+
+            }
+
+            p{
+                color: white;
+
+                font-family: Inter;
+
+                margin: 0px;
+
+                font-weight: bold;
+
+            }
+
+
+
+
+
+            .top-section{
+
+                display: flex;
+
+                justify-content: space-between;
+
+                align-items: center;
+
+                height: 100px;
+
+            }
+            .left-top-section{
+
+
+                margin-left: 20px;
+
+            }
+            .middle-top-section
+            {
+
+            }
+            .solHoje{
+
+                font-size:40px;
+                font-weight: 700;
+
+            }
+            .right-top-section{
+                width: 100px;
+                height: 100%;
+            }
+
+
+
+
+
+
+
+
+            .alo-container
+            {
+
+
+                display: flex;
+                align-items: center;
+
+            }
+            .profile-icon
+            {
+
+                margin-left: 160px;
+                margin-right: 20px;
+                font-size: 50px;
+
+            }
+            .alo-text
+            {
+                color: white;
+                font-size: 30px;
+                margin: 0px;
+            }
+
+
+
+            .stats-section
+            {
+
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+
+                height: 75%;
+
+            }
+            .stats-container
+            {
+                display: grid;
+
+                grid-template-columns: 1fr 1fr;
+
+                column-gap: 350px;
+                row-gap: 60px;
+
+            }
+
+            .stats-info-container
+            {
+                height: 200px;
+                width: 400px;
+                
+                border-radius: 10px;
+            
+                background-color: #2D1425;
+
+            }
+            .stats-info-top-section-container
+            {
+                display: flex;
+                align-items: center;
+
+            }
+            .niptik-text
+            {
+                color: white;
+            }           
+            .stats-info-section-container
+            {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 65%;
+
+
+
+            }
+
+            .info-vitais-text
+            {
+                font-size: 50px;
+                font-weight: 700;
+                color: white;
+            }
+
+            .icon
+            {
+                font-size: 30px;
+                color: white;
+            }
+            
+        </style>
+
+    </head>
+
+
+
+    <body>
+    
+
+        <div class = "top-section">
+
+            <div class = "left-top-section">
+
+                <a href = "{% url 'mars_weather'%}">
+                    <div class = "back-page">    
+                    
+                        <i class="bi bi-caret-left" style = "font-size: 40px; text-decoration: none; color:white; cursor:pointer">
+
+                        </i>
+                    </div>
+                </a>   
+            </div>
+        </div>
+
+
+
+
+        <div class = "alo-container">
+
+            <div class = "profile-icon"> <i class="bi bi-person-circle" style="text-decoration: none; color: white;"></i> </div>
+                
+            <p class = "alo-text">Alô, Marciano!</p>
+        </div>
+
+
+        <div class = "stats-section">
+
+            <div class = "stats-container">
+
+
+                <div class = "stats-info-container">
+
+                    <div class = "stats-info-top-section-container">
+
+                        <i class="bi bi-thermometer-half" style="font-size: 30px; color: white; margin-left: 10px; margin-right: 10px;"></i>
+
+                        <p class = "niptik-text"> Temperatura Corporal </p>
+
+                    </div>
+                    
+                    <div class = "stats-info-section-container">
+                       
+                        
+                        <p id="tempCorporal" class="info-vitais-text">--</p>
+                        
+                    
+                    
+                    </div>
+                </div>
+
+
+                <div class = "stats-info-container">
+
+                    <div class = "stats-info-top-section-container">
+
+                        <i class="bi bi-droplet-fill" style="font-size: 30px; color: white; margin-left: 10px; margin-right: 10px;"></i>
+                        <p class = "niptik-text"> Oxigenação Sanguínea </p>
+
+                    </div>
+                    
+                    <div class = "stats-info-section-container">
+                        <p id="oxigenacao" class="info-vitais-text">--</p>
+                    </div>
+                </div>
+
+
+                
+                <div class = "stats-info-container">
+
+                    <div class = "stats-info-top-section-container">
+
+                        <i class="bi bi-heart-pulse icon" style="font-size: 30px; color: white; margin-left: 10px; margin-right: 10px;"></i>
+                        <p class = "niptik-text"> Batimento Cardíaco </p>
+
+                    </div>
+                    
+                    <div class = "stats-info-section-container">
+                        <p id="batimento" class="info-vitais-text">--</p>
+                    </div>
+                </div>
+
+
+                
+                <div class = "stats-info-container">
+
+                    <div class = "stats-info-top-section-container">
+
+                        <i class="bi bi-arrows-collapse" style="font-size: 30px; color: white; margin-left: 10px; margin-right: 10px;"></i>
+
+                        <p class = "niptik-text"> Pressão Arterial </p>
+
+                    </div>
+                    
+                    <div class = "stats-info-section-container">
+                        <p id="pressao" class="info-vitais-text">--</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <script>
+            function atualizarDados() {
+                fetch('/status-astronauta/')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('tempCorporal').innerText = data.temperatura_corporal + "°C";
+                        document.getElementById('batimento').innerText = data.batimento_cardiaco + " BPM";
+                        document.getElementById('oxigenacao').innerText = data.oxigenacao + "%";
+                    });
+            }
+        
+            function atualizarPressao() {
+                fetch('/pressao/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const valor = `${data.sistolica}/${data.diastolica} mmHg`;
+                        document.getElementById('pressao').textContent = valor;
+                    })
+                    .catch(err => {
+                        console.error('Erro ao buscar pressão arterial:', err);
+                    });
+            }
+        
+            // Primeira chamada imediata
+            atualizarDados();
+            atualizarPressao();
+        
+            // Atualizações periódicas
+            setInterval(atualizarDados, 15000);   // 15 segundos
+            setInterval(atualizarPressao, 15000); // 15 segundos
+        </script>
+        
+
+        
+    </body>
+
+
+</html>
