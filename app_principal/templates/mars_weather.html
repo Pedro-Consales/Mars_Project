@@ -1,571 +1,160 @@
 <!DOCTYPE html>
-
 {% load static %}
-
-<html>
-
-    <head>
-
-        <title>Mars Waether</title>
-
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-        
-        <link rel="stylesheet" href="{% static 'projeto_mars/styles/mars_wather/general.css' %}">
-        
-        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-
-        <style>
-
-            a{
-
-                text-decoration: none;
-                
-            }
-
-            p{
-
-                margin: 0px;
-                color: white;
-
-            }
-
-            body {
-
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-                background: linear-gradient(to bottom, #2b0d00, #A32E10 ,#ff7e29);
-                font-family: "Inter", sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-
-
-            .top-section{
-                display: flex;
-
-                flex-direction: row;
-
-                justify-content: space-between;
-                align-items: center;
-
-                height: 50px;
-
-                width: 100%;
-
-                color: white;
-
-                margin-top: 15px;
-
-            }
-            .menu-icon{
-                margin-left: 25px;
-                font-size: 40px;
-
-                cursor: pointer;
-            }
-            .profile-icon{
-                margin-right: 25px;
-                font-size: 40px;
-
-                cursor: pointer;
-            }
-
-
-
-
-            .info-section{
-
-                display: flex;
-
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-
-                width: 100%;
-                height: 100%;
-
-            }
-            .main-temperature-container{
-
-                display: flex;
-
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                margin-bottom: 60px;
-                cursor: pointer;
-
-            }
-            .temperature-section{
-
-                display: flex;
-
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                width: 100%;
-                height: 500px;
-
-
-            }
-            .solNow{
-
-                font-size: 20px;
-                font-weight: 600;
-                margin-bottom: 5px;
-
-            }
-            .main-temperature,.temperature{
-
-                font-size: 45px;
-                font-weight: 700;
-                margin-right: 5px;
-
-
-            }
-
-            .general-temperatures-container{
-
-
-                display: grid;
-                grid-template-columns: 150px 150px 150px 150px 150px;
-                align-items: center;
-                justify-content: center;
-
-                column-gap: 60px;
-
-
-                width: 100%;
-                height: 200px;
-
-
-
-            }
-            .general-temperature-box{
-
-
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-
-                background-color: #421A2F;
-
-                opacity: 0.75;
-
-                border-radius: 10px;
-
-                height: 180px;
-                width: 180px;
-
-                cursor: pointer;
-
-
-            }
-            .general-temperature-box:hover{
-
-                opacity: 0.85;
-
-            }
-            .general-temperature-box:active{
-
-                opacity: 1;
-
-            }
-            .bi bi-exclamation-triangle-fill{
-                font-size: 100px;
-            }
-
-
-
-            .sidebar-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                position: fixed;     /* Fixa o sidebar na tela */
-                top: 0;
-                left: 0;
-                width: 300px;
-                height: 100%;
-                background-color: #282828;
-                z-index: 1000;       /* Fica acima do conteúdo */
-                padding: 20px;
-                color: white;
-                font-size: 20px;
-
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
-
-
-            .sidebar-top-section {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-
-            }
-
-            .battery-container {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-            
-            }
-            .battery-percentage {
-                margin-right: 5px;
-                font-size: 15px;
-            }
-
-
-
-            .sidebar-footer {
-                display: flex;
-                flex-direction: column;
-
-
-            }
-
-
-            .tools-container {
-                display: flex;
-                flex-direction: column;
-
-            }
-            .option-tools-container {
-                display: flex;
-                align-items: center;
-                flex-direction: row;
-                margin-bottom: 5px;
-
-            }
-            .option-tools-container p{
-                margin-left: 10px;
-                font-size: 15px;
-            }
-
-            .roloi-container {
-
-                margin-top: 10px;
-                margin-bottom: 5px;
-
-            }
-            .version
-            {
-                font-size: 12px;
-
-
-            }
-
-
-            .sidebar-container {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar-container.active {
-                transform: translateX(0);
-            }
-
-            .roloi-logo {
-                width: 200px;
-                height: 80px;
-            }
-
-
-
-            @media (max-width: 445px) {
-                .general-temperatures-container {
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                    column-gap: 20px;
-
-                    display: flex;
-
-                    align-items: center;
-                    justify-content: center;
-                }
-                .general-temperature-box {
-                    width: 50px;
-                    height: 50px;
-                }
-                .solNow {
-                    font-size: 15px;
-                }
-                .temperature{
-                    font-size: 25px;
-                }
-                .main-temperature {
-                    font-size: 32px;
-                }
-                .temperature-section {
-                    height: auto;
-                    padding: 20px;
-                }
-
-                .sidebar-container {
-                    width: 80%;
-                }
-            }
-
-        </style>
-
-
-    </head>
-    
-    <body>
-
-        <div class="sidebar-container">
-            
-            <div class = "sidebar-top-section">
-
-                <i class="bi bi-power"></i>
-
-                <i class="bi bi-bluetooth"></i>
-
-                <i class="bi bi-volume-up"></i>
-
-                <i class="bi bi-wifi"></i>
-
-                <div class = "battery-container">
-                    <p class = "battery-percentage">41%</p>
-                    <i class="bi bi-battery">
-                        
-                    </i>
-                </div>
-                
+<html lang="en">
+
+<head>
+    <title>Mars Weather</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap e Ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-gradient-to-b from-[#2b0d00] via-[#A32E10] to-[#ff7e29] min-h-screen text-white font-[Inter]">
+
+
+    <!-- SIDEBAR (oculto por padrão) -->
+    <div id="sidebar"
+    class="fixed top-0 left-0 w-64 h-full bg-[#282828] z-50 p-4 text-white flex flex-col justify-between
+           transform -translate-x-full transition-transform duration-300 ease-in-out">
+
+        <div class="flex items-center gap-3 flex-wrap">
+            <i class="bi bi-power"></i>
+            <i class="bi bi-bluetooth"></i>
+            <i class="bi bi-volume-up"></i>
+            <i class="bi bi-wifi"></i>
+            <div class="ml-auto flex items-center gap-1">
+                <p class="text-sm">41%</p>
+                <i class="bi bi-battery"></i>
             </div>
-
-
-
-            <div class = "sidebar-middle-section">
-
-
-
-
-            </div>
-
-
-            <div class = "sidebar-footer">
-
-                <div class = "tools-container">
-
-
-                    <div class = "option-tools-container">
-                        <i class="bi bi-gear-wide-connected"></i>
-                        <p>Configurações</p>
-                    </div>
-
-                    <div class = "option-tools-container">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <p>Mapa de radares</p>
-                    </div>
-
-                </div>
-
-
-                <div class = "roloi-container">
-
-                    <img src="{% static 'roloi.svg' %}" class = "roloi-logo">
-
-
-
-
-                </div>
-
-                <p class = "version">Version 0.0.1 i</p>
-
-
-            </div>
-
-
-
-
         </div>
 
+        <div class="flex-grow"></div>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-2 cursor-pointer hover:bg-[#3a3a3a] p-2 rounded">
+                <i class="bi bi-gear-wide-connected"></i>
+                <p>Configurações</p>
+            </div>
+            <div class="flex items-center gap-2 cursor-pointer hover:bg-[#3a3a3a] p-2 rounded">
+                <i class="bi bi-geo-alt-fill"></i>
+                <p>Mapa de radares</p>
+            </div>
+            <div class="text-center">
+                <img src="{% static 'roloi.svg' %}" class="mx-auto w-40 h-auto mb-1">
+                <p class="text-xs text-gray-400">Version 0.0.1 i</p>
+            </div>
+        </div>
+    </div>
 
 
 
-        <div class = "top-section">
-            
-            <div class = "menu-icon"> <i class="bi bi-list"> </i> </div>
+    <!-- TOPO -->
+    <div class="flex justify-between items-center px-6 py-4">
 
-            <a href="{% url 'user_detail'%}">
+        <div class="menu-icon cursor-pointer text-6xl">
 
-                <div class = "profile-icon"> <i class="bi bi-person-circle" style="text-decoration: none; color: white;"></i> </div>
-
-            </a>
-            
-
+            <i class="bi bi-list"></i>
         </div>
 
+        <a href="{% url 'user_detail' %}" class="text-4xl">
 
-        <div>
+            <i class="bi bi-person-circle text-white"></i>
+        </a>
+    </div>
 
-            <div class = "info-section">
 
-                <div class = "temperature-section">
+    <!-- DESTAQUE -->
+    <div class="pt-20 px-4">
+        <a href="{% url 'day_detail' day_number=1 %}">
 
-                    <a href="{% url 'day_detail' day_number=1 %}">
+            <div class="flex flex-col items-center text-center py-6 mb-10">
 
-                        <div class = "main-temperature-container">
+                <p class="text-lg">Sol {{ featured_forecast.solHoje }}</p>
+                <p class="text-5xl font-bold">{{ featured_forecast.avgTemperature|floatformat:1 }}°C</p>
 
-                            <p class = "solNow"> Sol {{ featured_forecast.solHoje }} </p>
-                            <p class = "main-temperature"> {{ featured_forecast.avgTemperature|floatformat:1 }}°C</p>
+                <div class="mt-2">
+                    {% if featured_forecast.storm_warning == 0 %}
+                        <p>No Data</p>
 
-                            <div class = "atention-box">
-                                {% if featured_forecast.storm_warning == 0 %}
+                    {% elif featured_forecast.storm_warning == 3 %}
+                        <i class="bi bi-exclamation-triangle-fill text-red-600 text-2xl"></i>
 
-                                <p> No Data </p>
-                             
-                                {% elif featured_forecast.storm_warning == 3 %}
+                    {% elif featured_forecast.storm_warning == 2 %}
+                        <i class="bi bi-exclamation-triangle-fill text-yellow-400 text-2xl"></i>
 
-                                    <i class="bi bi-exclamation-triangle-fill" style= "font-size: 30px; color:red;" > 
+                    {% elif featured_forecast.storm_warning == 1 %}
+                        <i class="bi bi-exclamation-triangle-fill text-green-500 text-2xl"></i>
 
-                                    </i>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
 
-                                {% elif featured_forecast.storm_warning == 2 %}
+        <!-- LISTA HORIZONTAL EM DESKTOP, VERTICAL EM MOBILE -->
 
-                                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 30px; color:yellow;" > 
+        <div class="flex justify-center w-full px-4">
 
-                                    </i>
+            <div class="flex flex-col gap-4 w-full max-w-[1200px] md:grid md:grid-cols-1 lg:grid-cols-5 md:gap-6">
 
-                                {% elif featured_forecast.storm_warning == 1 %}
+                {% for forecast in regular_forecasts %}
+            
+                    <a href="{% url 'day_detail' forloop.counter|add:'1' %}" class="w-full">
 
-                                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 30px; color:green;" > 
+                        <div class="bg-[#421A2F] rounded-lg p-4 flex flex-col items-center text-center hover:opacity-90 cursor-pointer">
+                            
+                            <p class="text-md font-semibold">Sol {{ forecast.solHoje }}</p>
+                            <p class="text-3xl font-bold">{{ forecast.avgTemperature|floatformat:1 }}°C</p>
 
-                                    </i>
+                            <div class="mt-2">
+                                {% if forecast.storm_warning == 0 %}
+                                    <p>No Data</p>
+
+                                {% elif forecast.storm_warning == 3 %}
+                                    <i class="bi bi-exclamation-triangle-fill text-red-600 text-2xl"></i>
+
+                                {% elif forecast.storm_warning == 2 %}
+                                    <i class="bi bi-exclamation-triangle-fill text-yellow-400 text-2xl"></i>
+
+                                {% elif forecast.storm_warning == 1 %}
+                                    <i class="bi bi-exclamation-triangle-fill text-green-500 text-2xl"></i>
 
                                 {% endif %}
                             </div>
                         </div>
                     </a>
-                    
-                    <div class="general-temperatures-container">
-                        {% for forecast in regular_forecasts%}
-
-                            <a href="{% url 'day_detail' forloop.counter|add:'1' %}">
-
-                                <div class="general-temperature-box">
-                                    <p class="solNow">Sol {{ forecast.solHoje }}</p>
-                                    <p class="temperature">{{ forecast.avgTemperature|floatformat:1 }}°C</p>
-    
-                                    <div class="atention-box">
-                                        {% if forecast.storm_warning == 0 %}
-
-                                           <p> No Data </p>
-                                        
-                                        {% elif forecast.storm_warning == 3 %}
-
-                                            <i class="bi bi-exclamation-triangle-fill" style="font-size: 30px; color:red;" > 
-
-                                            </i>
-                                        {% elif forecast.storm_warning == 2 %}
-
-                                            <i class="bi bi-exclamation-triangle-fill" style="font-size: 30px; color:yellow;" > 
-
-                                            </i>
-                                        {% elif forecast.storm_warning == 1 %}
-                                            <i class="bi bi-exclamation-triangle-fill" style="font-size: 30px; color:green;" > 
-
-                                            </i>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                
-                            </a>
-                           
-                    
-                        {% empty %}
-                            <p>Nenhum dado disponível</p>
-                        {% endfor %}
-                    </div>
-                </div>
-
+                {% empty %}
+                    <p class="text-center">Nenhum dado disponível</p>
+                {% endfor %}
             </div>
         </div>
+    </div>
 
+    <script>
+        const menuIcon = document.querySelector('.menu-icon');
+        const sidebar = document.getElementById('sidebar');
 
-        <script scr = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"> 
+        menuIcon?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar?.classList.toggle('-translate-x-full');
+        sidebar?.classList.toggle('translate-x-0');
+        });
 
+        document.addEventListener('click', (e) => {
+            if (!sidebar?.contains(e.target) && !menuIcon?.contains(e.target)) {
+                sidebar?.classList.add('-translate-x-full');
+                sidebar?.classList.remove('translate-x-0');
+            }
+        });
+    </script>
 
-            
-
-
-        </script>
-        
-    
-        <script>
-            const menuIcon = document.querySelector('.menu-icon');
-            const sidebar = document.querySelector('.sidebar-container');
-        
-            // Toggle ao clicar no ícone
-            menuIcon.addEventListener('click', (e) => {
-                e.stopPropagation(); // evita que o clique no menu feche o sidebar
-                sidebar.classList.toggle('active');
-            });
-        
-            // Fecha ao clicar fora do sidebar
-            document.addEventListener('click', (e) => {
-                // Se o clique NÃO foi dentro do sidebar E NÃO foi no botão de menu
-                if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
-                    sidebar.classList.remove('active');
-                }
-            });
-        </script>
-        
-        
-    
-    
-    
-    </body>
-
+</body>
 </html>
-
-
-
-
-  <!-- 
-
-
-
-
-    <p class = "solNow">{{ forecasts.0.solHoje }}</p>
-
-            <p class = "season">{{ forecasts.0.season }}</p>
-            <p class = "temperature">{{ forecasts.0.avgTemperature|floatformat:2 }} °C</p>
-            <p class = "windspeed">{{ forecasts.0.avgWind_speed|floatformat:2 }} km/h</p>
-            <p class = "wind_direction">{{ forecasts.0.wind_direction }}</p>
-            <p class = "pressure">{{ forecasts.0.avgAtmospheric_pressure|floatformat:2 }} Pa</p>
-            <p class = "storm_warning">{{ forecasts.0.storm_warning }}</p>
-
-
-
-
-
-  <h1>Previsão do tempo em Marte</h1>
-        {% for forecast in forecasts %}
-            <div>
-                <h2>Estação: {{ forecast.season }}</h2>
-                <p>Temperatura média: {{ forecast.avgTemperature|floatformat:2 }} °C</p>
-                <p>Temp. máx: {{ forecast.maxTemperature|floatformat:2 }} °C</p>
-                <p>Temp. mín: {{ forecast.minTemperature|floatformat:2 }} °C</p>
-                <p>Vento médio: {{ forecast.avgWind_speed|floatformat:2 }} km/h</p>
-                <p>Direção do vento: {{ forecast.wind_direction }}</p>
-                <p>Pressão média: {{ forecast.avgAtmospheric_pressure|floatformat:2 }} Pa</p>
-                <hr>
-            </div>
-        {% empty %}
-            <p>Nenhum dado disponível</p>
-        {% endfor %} -->

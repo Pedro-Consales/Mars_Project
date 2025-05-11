@@ -1,471 +1,132 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
 
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Sol {{ forecast.solHoje }} - Climte Details </title>
-        
+        <title>Sol {{ forecast.solHoje }} - Climate Details</title>
 
-        <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
+
+        <!-- Tailwind CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Bootstrap e Ícones -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-
-        <style>
-
-            body{
-
-                display: flex;
-
-                flex-direction: column;
-
-                height: 100vh;
-                background: linear-gradient(to right, #47101d, #873127 ,#9E281B);
-                
-                font-family: "Inter", sans-serif;
-                
-                color: white;
-
-            }
-            p{
-                margin:0px;
-
-                font-family: Inter;
-
-                
-            }
-
-
-            .top-section{
-
-                display: flex;
-
-                justify-content: space-between;
-
-                align-items: center;
-
-                height: 100px;
-
-            }
-            .left-top-section{
-
-
-                margin-left: 20px;
-
-            }
-            .middle-top-section
-            {
-                
-            }
-            .solHoje{
-
-                font-size:40px;
-                font-weight: 700;
-
-            }
-            .right-top-section{
-                width: 100px;
-                height: 100%;
-            }
-
-
-
-
-
-
-
-            .middle-section
-            {
-                display: flex;
-
-                justify-content: space-between;
-
-                flex-direction: row;
-            }
-            .left-middle-container
-            {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-    
-                margin-left: 150px;
-
-                height: 250px;
-                width: 380px;
-
-            }
-            .avgTemperature
-            {
-                font-size: 70px;
-                font-weight: 700;
-            }
-            .max_min_Temperature
-            {
-                font-size: 25px;
-                font-weight: 700;
-            }
-
-            .right-middle-container
-            {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                margin-right: 150px;
-
-                height: 250px;
-                width: 380px;
-
-            }
-            .warning-box
-            {
-
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-
-            }
-            .storm-text
-            {
-                font-size: 20px;
-                font-weight: 700;
-                margin-left: 10px;
-            }
-
-
-
-
-
-
-
-            .bottom-section
-            {
-                display: grid;
-                flex-direction: column;
-
-                grid-template-columns: 1fr;
-
-                padding: 50px 160px 50px 160px;
-
-                height: 100%;
-                width: 100%;
-
-            }
-            .infos-bottom-container
-            {
-
-                display: grid;
-                grid-template-columns: 1fr;
-                flex-direction: column;
-
-            }
-
-
-
-
-            .wind-info-container{
-                
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-                height: 150px;
-
-                background: linear-gradient(to right, #2a0911, #702829 ,#7A2424);
-                border-radius: 10px;
-
-            }
-            .windspeed-container
-            {
-                display: grid;
-                grid-template-columns: 60px 1fr;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-
-                margin-left: 60px;
-                padding: 10px;
-                
-                width: 300px;
-
-
-
-            }
-            .windspeed-info-container
-            {
-                margin-left: 10px;
-            }
-            .wind_speed
-            {
-                font-size: 30px;
-                font-weight: 700;
-            }
-            .wind-direction-info-container{
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-right: 60px;
-                padding: 10px;
-
-                width: 300px;
-
-
-            }
-            .wind-direction
-            {
-                font-size: 30px;
-                font-weight: 700;
-
-            }
-
-
-
-            .bottom-bottom-container
-            {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-
-            }
-            .atm-container
-            {
-                background: linear-gradient(to right, #2a0911, #702829 ,#7A2424);
-
-                width: 500px;
-
-                display: flex;
-                align-items: center;
-
-                border-radius: 10px;
-
-
-            }
-            .atm-pressure-container
-            {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                
-
-                height: 100%;
-
-                margin-left: 70px;
-
-            }
-            .atm-pressure-info-container
-            {
-                margin-left: 10px;
-            }
-            .atm-info
-            {
-                font-size: 30px;
-                font-weight: 700;
-            }
-
-            .uv-container
-            {
-
-                background: linear-gradient(to right, #5a1929, #702829 ,#7A2424);
-
-                width: 500px;
-
-                border-radius: 10px;
-
-
-            }
-            .uv-info-container
-            {
-
-                
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                margin-left: 30px;
-
-                height: 100%;
-
-                margin-left: 70px;
-
-            }
-            .uv-data
-            {
-                font-size: 30px;
-                font-weight: 700;
-                margin-left: 10px;
-            }
-            
-            
-
-        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 
     </head>
 
+    <body class="bg-gradient-to-r from-[#47101d] via-[#873127] to-[#9E281B] min-h-screen text-white font-[Inter]">
 
-    <body>
-        
-        <div class = "top-section">
 
-            <div class = "left-top-section">
-
-                <a href = "{% url 'mars_weather'%}">
-                    <div class = "back-page">    
-                    
-                        <i class="bi bi-caret-left" style = "font-size: 40px; text-decoration: none; color:white; cursor:pointer">
-
-                        </i>
-
-                    </div>
-                </a>   
-            </div>
-
-            <div class = "middle-top-section">
-                <p class = "solHoje">
-                    Sol {{ forecast.solHoje }}
-                </p>
-            </div>
-            
-            <div class = "right-top-section"></div>
-        
+        <!-- TOPO -->
+        <div class="flex justify-between items-center px-6 py-4">
+           
+            <a href="{% url 'mars_weather' %}">
+           
+                <div class="back-page text-4xl text-white cursor-pointer">
+           
+                    <i class="bi bi-caret-left"></i>
+           
+                </div>
+            </a>
+            <div class="text-center text-2xl font-bold">Sol {{ forecast.solHoje }}</div>
         </div>
 
+        <!-- MIDDLE SECTION (informações principais) -->
+        <div class="flex flex-col sm:flex-row justify-between items-center sm:gap-6 px-6 py-4">
 
-        <div class = "middle-section">
-            
-            <div class = left-middle-container>
-
-                <p class = "avgTemperature"> 
-                    {{forecast.avgTemperature|floatformat:1}}°C 
-                </p>
-
-                <p class = "max_min_Temperature">
-
-                    {{forecast.maxTemperature|floatformat:1}} °C / {{forecast.minTemperature|floatformat:1}} °C
-
-                </p>
+            <!-- Left Section: Temperature -->
+            <div class="left-middle-container flex flex-col items-center sm:w-1/2 mb-6 sm:mb-0">
+                
+                <p class="avgTemperature text-6xl font-bold">{{ forecast.avgTemperature|floatformat:1 }}°C</p>
+                
+                <p class="max_min_Temperature text-xl font-semibold">{{ forecast.maxTemperature|floatformat:1 }} °C / {{ forecast.minTemperature|floatformat:1 }} °C</p>
             </div>
 
-            <div class = "right-middle-container">
-                <div class = "warning-box">
-
+            <!-- Right Section: Storm Warning -->
+            <div class="right-middle-container flex flex-col items-center sm:w-1/2">
+                
+                <div class="warning-box flex items-center justify-center gap-2">
+                   
                     {% if forecast.storm_warning == 0 %}
-
-                    <p> No Data </p>
-                 
-                    {% elif forecast.storm_warning == 3 %}
-
-                        <i class="bi bi-exclamation-triangle-fill" style= "font-size: 50px; color:red;" > 
-
-                        </i>
-
-                        <p class = "storm-text"> Altas chances de tempestade</p>
-                    {% elif forecast.storm_warning == 2 %}
-
-                        <i class="bi bi-exclamation-triangle-fill" style="font-size: 50px; color:yellow;" > 
+                        <p>No Data</p>
                         
-                        </i>
-                        <p class = "storm-text"> Medias chances de tempestade</p>
-
+                    {% elif forecast.storm_warning == 3 %}
+                        <i class="bi bi-exclamation-triangle-fill text-red-600 text-4xl"></i>
+                        <p class="storm-text text-xl font-semibold">Altas chances de tempestade</p>
+                    
+                    {% elif forecast.storm_warning == 2 %}
+                        <i class="bi bi-exclamation-triangle-fill text-yellow-400 text-4xl"></i>
+                        <p class="storm-text text-xl font-semibold">Médias chances de tempestade</p>
+                    
                     {% elif forecast.storm_warning == 1 %}
-                        <i class="bi bi-exclamation-triangle-fill" style="font-size: 50px; color:green;" > 
-
-                        </i>
-                        <p class = "storm-text"> Baixas chances de tempestade</p>
-
+                        <i class="bi bi-exclamation-triangle-fill text-green-500 text-4xl"></i>
+                        <p class="storm-text text-xl font-semibold">Baixas chances de tempestade</p>
                     {% endif %}
                 </div>
             </div>
+
         </div>
 
+        <!-- BOTTOM SECTION -->
+        <div class="bottom-section flex flex-col sm:flex-row justify-between gap-6 px-6 py-4">
 
-
-
-
-        <div class = "bottom-section">
-
-
-            <div class = "infos-bottom-container">
-
-
-                <div class = "wind-info-container">
-
-                    <div class = "windspeed-container">
-    
-                       
-                        <i class="bi bi-wind" style = "font-size: 60px;"></i>
-                        
-                        <div class = "windspeed-info-container">
-                            
-                            <p class = "wind_speed"> 
-                                {{ forecast.avgWind_speed|floatformat:1}} km/h
-                            </p>
-    
-                            <p> {{forecast.maxWind_speed|floatformat:1}} km/h - {{forecast.minWind_speed|floatformat:1}} km/h</p>
-    
-                        </div>
-                    </div>
-    
-    
-                    <div class = "wind-direction-info-container">
-    
-                        <p class = "wind-direction"> 
-                            {{forecast.wind_direction}}
-                        </p>
-    
+            <!-- Wind Information -->
+            <div class="wind-info-container grid grid-cols-2 bg-gradient-to-r from-[#2a0911] to-[#702829] p-6 rounded-lg w-full sm:w-1/2 mb-6 sm:mb-0">
+                
+                <div class="windspeed-container flex items-center gap-3">
+                    
+                    <i class="bi bi-wind text-5xl"></i>
+                    <div class="windspeed-info-container flex flex-col items-start">
+                        <p class="wind_speed text-4xl font-bold">{{ forecast.avgWind_speed|floatformat:1 }} km/h</p>
+                        <p class="text-xl">{{ forecast.maxWind_speed|floatformat:1 }} km/h - {{ forecast.minWind_speed|floatformat:1 }} km/h</p>
                     </div>
                 </div>
 
+                <!-- Wind Direction -->
+                <div class="wind-direction-info-container flex items-center justify-center mt-4">
+                    
+                    <p class="wind-direction text-4xl font-bold">{{ forecast.wind_direction }}</p>
+                
+                </div>
+            </div>
 
-
-
-
-
-
-                <div class = "bottom-bottom-container">
-
-                    <div class = "atm-container">
-    
-                        <div class = "atm-pressure-container">
-    
-                            <i class="bi bi-arrows-collapse" style = "font-size: 60px;"></i>
-                            
-                            <div class = "atm-pressure-info-container">
-                                
-                                <p class = "atm-info"> 
-                                    {{ forecast.avgAtmospheric_pressure|floatformat:1}} Pa
-                                </p>
-        
-                                <p> {{forecast.maxAtmospheric_pressure|floatformat:1}} Pa - {{forecast.minAtmospheric_pressure|floatformat:1}} Pa</p>
-        
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class = "uv-container">
-
-
-                        <div class = "uv-info-container">
-
-                            <i class="bi bi-sun" style="font-size: 60px;"></i>
-
-                            <div class = "uv-data">
-
-                                UV: {{forecast.indicieUV}}
-
-                            </div>
-                        </div>
+            <!-- Atmospheric Pressure -->
+            <div class="atm-container bg-gradient-to-r from-[#2a0911] to-[#702829] p-6 rounded-lg w-full sm:w-1/2 mb-6 sm:mb-0">
+                
+                <div class="atm-pressure-container flex items-center gap-3">
+                
+                    <i class="bi bi-arrows-collapse text-5xl"></i>
+                
+                    <div class="atm-pressure-info-container flex flex-col items-start">
+                
+                        <p class="atm-info text-4xl font-bold">{{ forecast.avgAtmospheric_pressure|floatformat:1 }} Pa</p>
+                        <p class="text-xl">{{ forecast.maxAtmospheric_pressure|floatformat:1 }} Pa - {{ forecast.minAtmospheric_pressure|floatformat:1 }} Pa</p>
+                
                     </div>
                 </div>
+            </div>
+
+        </div>
+
+        <!-- UV Information -->
+        <div class="uv-container bg-gradient-to-r from-[#5a1929] to-[#702829] p-6 rounded-lg w-full sm:w-1/2 mx-auto ">
+            
+            <div class="uv-info-container flex items-center gap-3">
+            
+                <i class="bi bi-sun text-5xl"></i>
+                <div class="uv-data text-4xl font-bold"> UV:{{ forecast.indicieUV }}</div>
+            
             </div>
         </div>
 
