@@ -82,13 +82,13 @@
         <div class="bottom-section flex flex-col sm:flex-row justify-between gap-6 px-6 py-4">
 
             <!-- Wind Information -->
-            <div class="wind-info-container grid grid-cols-2 bg-gradient-to-r from-[#2a0911] to-[#702829] p-6 rounded-lg w-full sm:w-1/2 mb-6 sm:mb-0">
+            <div class="wind-info-container grid grid-cols-2 bg-gradient-to-r from-[#2a0911] to-[#702829] p-6 rounded-lg w-full sm:w-1/2 mb-6 sm:mb-0 ">
                 
                 <div class="windspeed-container flex items-center gap-3">
                     
                     <i class="bi bi-wind text-5xl"></i>
                     <div class="windspeed-info-container flex flex-col items-start">
-                        <p class="wind_speed text-4xl font-bold">{{ forecast.avgWind_speed|floatformat:1 }} km/h</p>
+                        <p class="wind_speed text-2xl sm:text4x1 font-bold">{{ forecast.avgWind_speed|floatformat:1 }} km/h</p>
                         <p class="text-xl">{{ forecast.maxWind_speed|floatformat:1 }} km/h - {{ forecast.minWind_speed|floatformat:1 }} km/h</p>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <!-- Wind Direction -->
                 <div class="wind-direction-info-container flex items-center justify-center mt-4">
                     
-                    <p class="wind-direction text-4xl font-bold">{{ forecast.wind_direction }}</p>
+                    <p class="wind-direction text-2xl sm:text-4xl font-bold">{{ forecast.wind_direction }}</p>
                 
                 </div>
             </div>
